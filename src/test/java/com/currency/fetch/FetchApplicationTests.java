@@ -10,4 +10,9 @@ class FetchApplicationTests {
 	void contextLoads() {
 	}
 
+	@Test
+	void testController(){
+
+	}
+
 }
