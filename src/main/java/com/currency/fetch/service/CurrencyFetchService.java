@@ -3,11 +3,9 @@ package com.currency.fetch.service;
 
 import com.currency.fetch.dto.CurrencyList;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
 @Service
 public class CurrencyFetchService {
@@ -18,6 +16,10 @@ public class CurrencyFetchService {
     private KafkaPublishSerivce kafkaPublishSerivce;
 
     @Scheduled(cron = "0 0/30 * * * *")
+    public void fetchCurrencyListScheduled(){
+        getCurrencyListWithBase("USD");
+    }
+
     public void getCurrencyListWithBase(String base){
 
         String uri = "/latest?base=" + base;
